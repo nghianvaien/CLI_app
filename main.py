@@ -20,6 +20,13 @@ while True:
 
     choice = input("Choose: ")
 
+    # Validate input
+    if choice not in["1", "2", "3", "4", "5"]:
+        print("Invalid menu.")
+        # quay lại đầu loop
+        # return to the begining of the loop
+        continue
+
     # Add task
     if choice == "1":
         title = input("Enter task title: ")
