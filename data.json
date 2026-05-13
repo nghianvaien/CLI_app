@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "id": 1,
+        "title": "Study AI",
+        "completed": true
+    },
+    {
+        "id": 2,
+        "title": "Python Basic",
+        "completed": false
+    },
+    {
+        "id": 3,
+        "title": "Learn FastAPI",
+        "completed": true
+    }
+]

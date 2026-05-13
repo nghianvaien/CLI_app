@@ -15,13 +15,81 @@ def generate_task_id():
     # Lấy id cuối + 1
     return tasks[-1].id + 1
 
+# Search task theo keyword
+def search_tasks(tasks):
+    if not tasks:
+
+        print("No task found.")
+
+        return
+    
+    keyword = input("Enter keyword: ").lower()
+    
+    # flag kiểm tra có kết quả không
+    found = False
+
+    print("\n=== SEARCH RESULT ===")
+
+    # loop từng task
+    for task in tasks:
+        #search không phân biệt hoa thường
+        if keyword in task.title.lower():
+            print(task)
+            found = True
+    
+    if not found:
+        print("No matching tasks")
+
+# Filter task theo trạng thái
+def filter_tasks(tasks):
+    if not tasks:
+        print("No tasks found.")
+        return
+    
+    print("\n1. Completed")
+    print("2. Uncompleted")
+    
+    # User chọn filter
+    choice = input("Choose filter: ")
+
+    # Completed
+    if choice == "1":
+        print("\n=== COMPLETED TASKS ===")
+
+        found = False
+
+        for task in tasks:
+            #Chỉ lấy completed=True
+            if task.completed:
+                print(task)
+                found = True
+        
+        if not found:
+            print("No completed tasks.")
+    
+    elif choice == "2":
+        print("\n=== UNCOMPLETED TASKS ===")
+        found = False
+
+        for task in tasks:
+            # Chỉ lấy completed=False
+            if not task.completed:
+                print(task)
+                found = True
+        
+        if not found:
+            print("No uncompleted tasks.")
+    
+    else:
+        print("Invalid filter.")
+
 while True:
     print_menu()
 
     choice = input("Choose: ")
 
     # Validate input
-    if choice not in["1", "2", "3", "4", "5"]:
+    if choice not in["1", "2", "3", "4", "5", "6", "7"]:
         print("Invalid menu.")
         # quay lại đầu loop
         # return to the begining of the loop
@@ -108,10 +176,21 @@ while True:
             except ValueError:
                 print("Invalid input.")
 
-    # Exit
+    # Search
     elif choice == "5":
+        search_tasks(tasks)
+        break
+
+    # Filter
+    elif choice == "6":
+        filter_tasks(tasks)
+        break
+
+    # Exit
+    elif choice == "7":
         print("Goodbye!")
         break
 
     else:
         print("Invalid menu.")
+
